@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Bloque para incluir etiquetas adicionales en la cabecera -->
+    {% block extrahead %}
+    {% endblock extrahead %}
+</head>
+<body>
+    <section class="hero is-fullheight">
+        <div class="hero-head ">
+            <!-- Bloque para incluir navbar -->
+            {% block navbar %}
+          <header class="navbar is-fixed-top">
+            <div class="container">
+              <div class="navbar-brand">
+                <a class="navbar-item" href="https://uis.edu.co/inicio/">
+                  <img src="http://tangara.uis.edu.co/biblioweb/portalVirtual_tmp/UIS-logo1.png" alt="Logo">
+                </a>
+                <span class="navbar-burger" data-target="navbarMenuHeroC">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </div>
+              <div id="navbarMenuHeroC" class="navbar-menu">
+                <div class="navbar-end">
+                  <a class="navbar-item is-active" href="{% url 'home'%}">
+                    Inicio
+                  </a>
+                  <a class="navbar-item" href="{% url 'personas'%}">
+                    Personas
+                  </a>
+                  <a class="navbar-item" href="{% url 'documentos'%}">
+                    Documentos
+                  </a>
+                  <a class="navbar-item" href="{% url 'ciudades'%}">
+                    Ciudades
+                  </a>
+                </div>
+              </div>
+            </div>
+          </header>
+          {% endblock navbar %}
+        </div>
+        <div class="hero-body has-text-centered">
+          <div class="container">
+              <div class="columns is-centered">
+                  <div class="box">
+                    <!-- Bloque para incluir contenido -->
+                    {% block content %}
+                      
+                    {% endblock content %}
+                  </div>
+              </div>
+          </div>
+        </div>
+      </section>
+      <!-- Bloque para incluir javascripts -->
+    {% block scripts %}
+    {% endblock scripts %}
+</body>
+</html>
