@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block extrahead %}
+    <title>Ciudades</title>
+    <script defer src="https://use.fontawesome.com/releases/v6.1.2/js/all.js"></script>
+{% endblock extrahead %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="title is-1">Lista de Ciudades</h1>
+        <div class="columns">
+            <table class="table is-striped has-text-centered is-hoverable is-bordered">
+                <thead>
+                    <tr>
+                        <th class="has-text-centered">id</th>
+                        <th class="has-text-centered">Nombre</th>
+                        <th class="has-text-centered">Descripción</th>
+                        <th class="has-text-centered">Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if ciudades %}
+                    {% for doc in ciudades %}
+                    <tr>
+                        <td>{{doc.pk}}</td>
+                        <td>{{doc.nombre}}</td>
+                        <td>{{doc.descripcion}}</td>
+                        <td>
+                            <div class="columns">
+                            <div class="column">
+                                <a class="button is-info" href="{% url 'edit_ciudad' doc.pk %}">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-pen-to-square"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a class="button is-danger" href="{% url 'delete_ciudad' doc.pk %}">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            </div>
+                        </td> 
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <style>
+            .table {
+              margin-left: auto;
+              margin-right: auto;
+            }
+        </style>
+        <div class="field">
+            <a href="/ciudades/new/" class="button is-success">
+                <span>Crear nueva ciudad</span>
+                <span class="icon is-small">
+                    <i class="fas fa-file-circle-plus"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+{% endblock content %}
