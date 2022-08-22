@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block extrahead %}
+    <title>Editar Persona</title>
+{% endblock extrahead %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="title is-1">Editar Persona</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="columns  is-multiline">
+            {% for field in form %}
+            <div class="column is-half">
+            {% if field.label == 'Tipo de Documento' %}
+            <p class="field">
+                <label class="label">{{ field.label }}</label>
+                <div class="select is-fullwidth is-normal">
+                <select name="{{ field.name }}" id="{{ field.name }}" required>
+                    <option disabled value="">Seleccione un tipo de documento</option>
+                    {% for docs in documentos %}
+                    {% if personas.tipodocumento.id == docs.pk %}
+                    <option selected value="{{ docs.pk }}">{{ docs.nombre }}</option>
+                    {% else %}
+                    <option value="{{ docs.pk }}">{{ docs.nombre }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+                </div>
+            </p><br>
+            {% elif field.label == 'Lugar de Nacimiento' %}
+            <p class="field">
+                <label class="label">{{ field.label }}</label>
+                <div class="select is-fullwidth is-normal">
+                <select name="{{ field.name }}" id="{{ field.name }}" required>
+                    <option disabled value="">Seleccione una ciudad</option>
+                    {% for ciuds in ciudades %}
+                    {% if personas.lugarnacimiento.id == ciuds.pk %}
+                    <option selected value="{{ ciuds.pk }}">{{ ciuds.nombre }}</option>
+                    {% else %}
+                    <option value="{{ ciuds.pk }}">{{ ciuds.nombre }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+                </div>
+            </p><br>
+            {% elif field.label == 'Contraseña' %}
+            <p class="field">
+                <label class="label" style="margin-bottom:12px">{{ field.label }}</label>
+                <input type="password" name="password" class="input" required maxlength="30" id="id_password" value="{{ personas.password }}">
+            </p>
+            {% else %}
+            <p class="field">
+                <label class="label" style="margin-bottom:12px">{{ field.label }}</label>
+                {{ field }}
+            </p>
+            {% endif %}
+            </div>
+            {% endfor %}
+            </div>
+            <input type="submit" value="Submit" class="button is-primary">
+            <a class="button is-danger" href="/personas/">Cancel</a>
+        </form>
+    </div>
+{% endblock content %}
