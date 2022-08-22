@@ -18,7 +18,7 @@ class Persona(models.Model):
     tipodocumento = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE)
     documento = models.CharField(max_length=20)
     lugarnacimiento = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
-    fechanacimiento = models.DateField() #https://www.youtube.com/watch?v=I2-JYxnSiB0
+    fechanacimiento = models.DateField(auto_now_add=False, auto_now=False, blank=True) #https://www.youtube.com/watch?v=I2-JYxnSiB0
     email = models.EmailField(max_length=254)
     telefono = models.CharField(max_length=15)
     username = models.CharField(max_length=20)
