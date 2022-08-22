@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block extrahead %}
+    <title>Crear Ciudad</title>
+{% endblock extrahead %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="title is-1">Crear nueva Ciudad</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <p class="field">
+                <label class="label">{{ field.label }}</label>
+                {{ field }}
+            </p>
+            {% endfor %}
+            <input type="submit" value="Submit" class="button is-primary">
+            <a class="button is-danger" href="/ciudades/">Cancel</a>
+        </form>
+    </div>
+{% endblock content %}
