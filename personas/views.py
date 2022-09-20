@@ -193,14 +193,14 @@ def edit_persona(request, pk):
 
 def delete_persona(request, pk):
 
-    Ciudad.objects.filter(id=pk).delete()
+    Persona.objects.filter(id=pk).delete()
 
-    documentos = Ciudad.objects.all()
+    personas = Persona.objects.all()
 
-    template = loader.get_template('personas/ciudades.html')
+    template = loader.get_template('personas/personas.html')
 
     context = {
-        'ciudades':ciudades,
+        'personas':personas,
     }
     
     return HttpResponse(template.render(context, request))
